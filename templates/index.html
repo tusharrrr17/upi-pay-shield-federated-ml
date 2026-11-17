@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPI Pay Shield | 10-Feature Futuristic AI Defense</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #070b14; color: #f8fafc; margin: 0; padding: 18px; }
+        .topbar { max-width: 1280px; margin: 0 auto 16px auto; display: flex; justify-content: space-between; align-items: center; background: #111827; padding: 12px 20px; border-radius: 14px; border: 1px solid #1f2937; }
+        .pulse-dot { height: 10px; width: 10px; background: #22c55e; border-radius: 50%; display: inline-block; margin-right: 6px; box-shadow: 0 0 8px #22c55e; }
+        .layout { max-width: 1280px; margin: auto; display: grid; grid-template-columns: 310px 390px 1fr; gap: 18px; align-items: start; }
+        .panel { background: #111827; border: 1px solid #1f2937; border-radius: 18px; padding: 18px; }
+        .panel-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #38bdf8; font-weight: 700; margin-bottom: 14px; border-bottom: 1px solid #1f2937; padding-bottom: 8px; }
+        
+        /* Left Sensors */
+        .sensor-row { display: flex; justify-content: space-between; align-items: center; background: #0b0f19; padding: 10px 12px; border-radius: 10px; margin-bottom: 10px; border: 1px solid #1e293b; }
+        .sensor-label { font-size: 0.82rem; font-weight: 600; }
+        .sensor-sub { font-size: 0.7rem; color: #94a3b8; }
+        input[type="checkbox"] { width: 18px; height: 18px; accent-color: #38bdf8; cursor: pointer; }
+
+        /* Center Phone UI */
+        .phone-frame { background: #131b2e; border-radius: 26px; padding: 20px; border: 2px solid #26334d; box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
+        .wallet-card { background: linear-gradient(135deg, #1e293b, #0f172a); padding: 12px 16px; border-radius: 12px; border: 1px solid #334155; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; }
+        .chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+        .chip { background: #1e293b; border: 1px solid #334155; color: #cbd5e1; font-size: 0.72rem; padding: 5px 9px; border-radius: 14px; cursor: pointer; }
+        .chip:hover { background: #334155; }
+        label.field-lbl { display: block; font-size: 0.78rem; color: #94a3b8; margin-bottom: 4px; }
+        input[type="text"], input[type="number"], select { width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #334155; background: #0b1120; color: #fff; font-size: 0.92rem; margin-bottom: 12px; }
+        .pay-btn { width: 100%; padding: 13px; background: #2563eb; color: white; border: none; border-radius: 12px; font-size: 0.95rem; font-weight: bold; cursor: pointer; }
+        .pay-btn:hover { background: #1d4ed8; }
+        .shield-box { display: none; margin-top: 14px; padding: 14px; border-radius: 12px; background: #0b1120; border: 1px solid #334155; }
+        .pin-btn { width: 100%; margin-top: 10px; padding: 10px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; }
+
+        /* Right XAI & Telemetry */
+        .shap-bar-bg { background: #1e293b; height: 8px; border-radius: 6px; overflow: hidden; margin-top: 4px; margin-bottom: 10px; }
+        .shap-bar-fill { height: 100%; background: #f43f5e; border-radius: 6px; transition: width 0.4s ease; }
+        .audit-item { background: #0b0f19; padding: 9px 12px; border-radius: 8px; border-left: 4px solid #38bdf8; margin-bottom: 8px; font-size: 0.78rem; display: flex; justify-content: space-between; }
+    </style>
+</head>
+<body>
+
+<div class="topbar">
+    <div>
+        <strong style="font-size: 1.1rem; color: #38bdf8;">UPI PAY SHIELD // FEDERATED AI COMMAND CENTER</strong>
+        <div style="font-size: 0.75rem; color: #94a3b8;">10-Layer Real-Time Scam Defense & Explainable XGBoost Engine</div>
+    </div>
+    <div style="font-size: 0.78rem; color: #cbd5e1;">
+        <span class="pulse-dot"></span> <span id="fedPulse">Federated Nodes Active: HDFC + SBI + ICICI</span>
+    </div>
+</div>
+
+<div class="layout">
+    <!-- LEFT PANEL: 10-FEATURE DEVICE & BEHAVIORAL SENSORS -->
+    <div class="panel">
+        <div class="panel-title">1. Live Threat Sensors (Simulate)</div>
+        
+        <div class="sensor-row">
+            <div>
+                <div class="sensor-label">Active Call / Screen-Share</div>
+                <div class="sensor-sub">Feature #1: Psychological Trap</div>
+            </div>
+            <input type="checkbox" id="on_active_call">
+        </div>
+
+        <div class="sensor-row">
+            <div>
+                <div class="sensor-label">Geo Impossible Travel</div>
+                <div class="sensor-sub">Feature #6: Delhi -> Mumbai (10m)</div>
+            </div>
+            <input type="checkbox" id="impossible_travel">
+        </div>
+
+        <div class="sensor-row">
+            <div>
+                <div class="sensor-label">Penny-Drop (₹1 Test) Seen</div>
+                <div class="sensor-sub">Feature #9: Mule Sweep Pattern</div>
+            </div>
+            <input type="checkbox" id="penny_drop_seen">
+        </div>
+
+        <div class="sensor-row">
+            <div>
+                <div class="sensor-label">Midnight Odd-Hour (2 AM)</div>
+                <div class="sensor-sub">Feature #10: Dynamic ₹5k Cap</div>
+            </div>
+            <input type="checkbox" id="midnight_mode">
+        </div>
+
+        <div class="sensor-row">
+            <div>
+                <div class="sensor-label">Guardian Lock (Elders)</div>
+                <div class="sensor-sub">Feature #8: Hold >₹10k New VPA</div>
+            </div>
+            <input type="checkbox" id="guardian_lock" checked>
+        </div>
+
+        <div style="background: #0b0f19; padding: 10px; border-radius: 10px; border: 1px solid #1e293b; margin-top: 12px;">
+            <div style="font-size: 0.75rem; color: #94a3b8;">Feature #4: Typing Biometrics</div>
+            <div style="font-size: 0.85rem; font-weight: bold; color: #38bdf8; margin-top: 2px;" id="bioReadout">Panic/Hesitation Index: 0.10 (Calm)</div>
+        </div>
+    </div>
+
+    <!-- CENTER PANEL: SMARTPHONE UPI APP -->
+    <div class="phone-frame">
+        <div class="wallet-card">
+            <div>
+                <div style="font-size: 0.72rem; color: #94a3b8;">HDFC Bank •••• 4821</div>
+                <div style="font-size: 1.25rem; font-weight: bold; color: #38bdf8;">₹ 50,000.00</div>
+            </div>
+            <div style="text-align: right;">
+                <div style="font-size: 0.7rem; color: #94a3b8;">AI Safe Limit</div>
+                <div style="font-size: 0.9rem; font-weight: bold; color: #22c55e;" id="dynamicLimitDisplay">₹ 50,000</div>
+            </div>
+        </div>
+
+        <div style="font-size: 0.72rem; color: #94a3b8; margin-bottom: 6px;">One-Click Attack Simulations:</div>
+        <div class="chips">
+            <span class="chip" onclick="loadPreset('zomato@icici', 450, 'MERCHANT_QR', false, false, false, false)">Safe QR ₹450</span>
+            <span class="chip" onclick="loadPreset('olx.buyer@ybl', 15000, 'COLLECT_REQUEST', false, false, false, false)">Collect Trap ₹15k</span>
+            <span class="chip" onclick="loadPreset('kyc.update99@ybl', 48000, 'P2P_TRANSFER', true, false, true, false)">Call + Mule ₹48k</span>
+            <span class="chip" onclick="loadPreset('new.friend@okaxis', 18000, 'P2P_TRANSFER', false, false, false, false)">Guardian Hold ₹18k</span>
+        </div>
+
+        <label class="field-lbl">Receiver UPI ID (Feature #3 Federated Check)</label>
+        <input type="text" id="receiver_upi" value="zomato@icici">
+
+        <label class="field-lbl">Transaction Mode (Feature #2 Trap Guard)</label>
+        <select id="payment_mode">
+            <option value="MERCHANT_QR">Scan & Pay (Merchant QR)</option>
+            <option value="P2P_TRANSFER">Send Money (P2P Transfer)</option>
+            <option value="COLLECT_REQUEST">Collect Request (Approve Link)</option>
+        </select>
+
+        <label class="field-lbl">Amount in INR (Type to test Biometrics)</label>
+        <input type="number" id="amount" value="450" style="font-size: 1.3rem; font-weight: bold; color: #38bdf8;">
+
+        <button class="pay-btn" onclick="analyzeTransaction()">Proceed to Pay</button>
+
+        <div id="shieldBox" class="shield-box">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span id="statusBadge" style="font-weight: 800; font-size: 0.85rem;">ANALYZING</span>
+                <span id="riskPct" style="font-size: 1.4rem; font-weight: 800;">0%</span>
+            </div>
+            <div id="bannerText" style="font-size: 0.8rem; margin-top: 5px; font-weight: 600;"></div>
+            <ul id="reasonList" style="margin: 8px 0 0 0; padding-left: 16px; font-size: 0.76rem; color: #cbd5e1;"></ul>
+            <button id="pinBtn" class="pin-btn">Enter UPI PIN</button>
+        </div>
+    </div>
+
+    <!-- RIGHT PANEL: SHAP XAI BREAKDOWN & AUDIT LEDGER -->
+    <div class="panel">
+        <div class="panel-title">2. Real-Time SHAP Risk Breakdown (Feature #5)</div>
+        <div id="shapContainer" style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 18px;">
+            Run a transaction to inspect live AI feature attributions...
+        </div>
+
+        <div class="panel-title">3. Live Security Telemetry Ledger</div>
+        <div id="auditLog" style="max-height: 260px; overflow-y: auto;">
+            <div style="font-size: 0.78rem; color: #64748b;">No transactions audited yet in this session.</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Feature #4: Behavioral Biometrics Keystroke Tracker
+    let lastKeyTime = Date.now();
+    let hesitationScore = 0.1;
+    let backspaces = 0;
+
+    document.getElementById('amount').addEventListener('keydown', (e) => {
+        const now = Date.now();
+        const gap = now - lastKeyTime;
+        lastKeyTime = now;
+        if (e.key === 'Backspace') backspaces++;
+        if (gap > 900 && gap < 5000) hesitationScore = Math.min(1.0, hesitationScore + 0.25);
+        if (backspaces >= 2) hesitationScore = Math.min(1.0, hesitationScore + 0.3);
+        const label = hesitationScore >= 0.5 ? 'High Hesitation / Coercion' : 'Calm Rhythm';
+        document.getElementById('bioReadout').innerText = `Panic/Hesitation Index: ${hesitationScore.toFixed(2)} (${label})`;
+    });
+
+    let countdownTimer = null;
+
+    function loadPreset(upi, amt, mode, call, geo, penny, midnight) {
+        document.getElementById('receiver_upi').value = upi;
+        document.getElementById('amount').value = amt;
+        document.getElementById('payment_mode').value = mode;
+        document.getElementById('on_active_call').checked = call;
+        document.getElementById('impossible_travel').checked = geo;
+        document.getElementById('penny_drop_seen').checked = penny;
+        document.getElementById('midnight_mode').checked = midnight;
+        hesitationScore = call ? 0.75 : 0.10;
+        document.getElementById('bioReadout').innerText = `Panic/Hesitation Index: ${hesitationScore.toFixed(2)}`;
+        document.getElementById('shieldBox').style.display = 'none';
+    }
+
+    async function analyzeTransaction() {
+        if (countdownTimer) clearInterval(countdownTimer);
+
+        const payload = {
+            receiver_upi: document.getElementById('receiver_upi').value,
+            amount: parseFloat(document.getElementById('amount').value),
+            payment_mode: document.getElementById('payment_mode').value,
+            on_active_call: document.getElementById('on_active_call').checked,
+            impossible_travel: document.getElementById('impossible_travel').checked,
+            guardian_lock: document.getElementById('guardian_lock').checked,
+            penny_drop_seen: document.getElementById('penny_drop_seen').checked,
+            midnight_mode: document.getElementById('midnight_mode').checked,
+            typing_hesitation: hesitationScore
+        };
+
+        const res = await fetch('/api/check_upi', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        // Update Top & Dynamic Limit UI
+        document.getElementById('fedPulse').innerText = data.federated_status;
+        document.getElementById('dynamicLimitDisplay').innerText = `₹ ${data.dynamic_limit.toLocaleString()}`;
+
+        // Update Center Shield Box
+        const box = document.getElementById('shieldBox');
+        const pct = document.getElementById('riskPct');
+        const badge = document.getElementById('statusBadge');
+        const banner = document.getElementById('bannerText');
+        const list = document.getElementById('reasonList');
+        const pinBtn = document.getElementById('pinBtn');
+
+        box.style.display = 'block';
+        pct.innerText = `${data.risk_score}%`;
+        banner.innerText = data.banner;
+
+        list.innerHTML = '';
+        data.reasons.forEach(r => {
+            const li = document.createElement('li');
+            li.innerText = r;
+            list.appendChild(li);
+        });
+
+        pinBtn.onclick = () => alert('UPI PIN Verified! Transaction Processed.');
+
+        if (data.status === 'BLOCKED') {
+            box.style.borderColor = '#ef4444';
+            pct.style.color = '#ef4444';
+            badge.style.color = '#ef4444';
+            badge.innerText = '🚨 BLOCKED BY AI';
+            pinBtn.style.background = '#334155';
+            pinBtn.style.color = '#94a3b8';
+            pinBtn.innerText = 'Transaction Blocked';
+            pinBtn.disabled = true;
+        } else if (data.status === 'GUARDIAN_HOLD') {
+            box.style.borderColor = '#a855f7';
+            pct.style.color = '#a855f7';
+            badge.style.color = '#a855f7';
+            badge.innerText = '🛡️ GUARDIAN LOCK';
+            pinBtn.style.background = '#7e22ce';
+            pinBtn.style.color = '#fff';
+            pinBtn.innerText = 'Simulate Family Guardian Approval';
+            pinBtn.disabled = false;
+            pinBtn.onclick = () => {
+                pinBtn.style.background = '#16a34a';
+                pinBtn.innerText = 'Guardian Approved! Enter UPI PIN';
+                pinBtn.onclick = () => alert('Guardian-Approved Payment Complete!');
+            };
+        } else if (data.status === 'WARNING') {
+            // Feature #7: 10-Second Mandatory Cooling-Off Timer
+            box.style.borderColor = '#f59e0b';
+            pct.style.color = '#f59e0b';
+            badge.style.color = '#f59e0b';
+            badge.innerText = '⚠️ COOLING-OFF HOLD';
+            let sec = 10;
+            pinBtn.disabled = true;
+            pinBtn.style.background = '#78350f';
+            pinBtn.style.color = '#fde68a';
+            pinBtn.innerText = `Cooling-Off Timer: Wait ${sec}s...`;
+            countdownTimer = setInterval(() => {
+                sec--;
+                if (sec > 0) {
+                    pinBtn.innerText = `Cooling-Off Timer: Wait ${sec}s...`;
+                } else {
+                    clearInterval(countdownTimer);
+                    pinBtn.disabled = false;
+                    pinBtn.style.background = '#d97706';
+                    pinBtn.style.color = '#fff';
+                    pinBtn.innerText = 'Timer Complete: Proceed Anyway';
+                }
+            }, 1000);
+        } else {
+            box.style.borderColor = '#22c55e';
+            pct.style.color = '#22c55e';
+            badge.style.color = '#22c55e';
+            badge.innerText = '✅ SAFE TO PAY';
+            pinBtn.style.background = '#16a34a';
+            pinBtn.style.color = '#fff';
+            pinBtn.innerText = 'Enter 4-Digit UPI PIN';
+            pinBtn.disabled = false;
+        }
+
+        // Render Feature #5 SHAP Bars
+        const shapDiv = document.getElementById('shapContainer');
+        if (data.shap_factors.length === 0) {
+            shapDiv.innerHTML = '<div style="color:#22c55e;">No risk elevating factors detected (0% Threat Attribution).</div>';
+        } else {
+            shapDiv.innerHTML = data.shap_factors.map(f => `
+                <div>
+                    <div style="display:flex; justify-content:space-between; font-size:0.78rem; color:#e2e8f0;">
+                        <span>${f.feature}</span>
+                        <span style="color:#f43f5e; font-weight:bold;">+${f.impact}%</span>
+                    </div>
+                    <div class="shap-bar-bg">
+                        <div class="shap-bar-fill" style="width: ${Math.min(100, f.impact * 2)}%;"></div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Append to Audit Ledger
+        const log = document.getElementById('auditLog');
+        if (log.innerText.includes('No transactions')) log.innerHTML = '';
+        const color = data.status === 'BLOCKED' ? '#ef4444' : (data.status === 'SAFE' ? '#22c55e' : '#f59e0b');
+        const entry = document.createElement('div');
+        entry.className = 'audit-item';
+        entry.style.borderLeftColor = color;
+        entry.innerHTML = `
+            <div>
+                <strong>${payload.receiver_upi}</strong> (₹${payload.amount})<br>
+                <span style="color:#94a3b8; font-size:0.7rem;">${new Date().toLocaleTimeString()} • ${payload.payment_mode}</span>
+            </div>
+            <div style="text-align:right; color:${color}; font-weight:bold;">
+                ${data.risk_score}%<br><span style="font-size:0.68rem;">${data.status}</span>
+            </div>
+        `;
+        log.prepend(entry);
+        hesitationScore = 0.1;
+        backspaces = 0;
+    }
+</script>
+</body>
+</html>
