@@ -3,24 +3,22 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 import pandas as pd
-import numpy as np
 import xgboost as xgb
 import joblib
 from datetime import datetime
 import os
 
-app = FastAPI(title="UPI Pay Shield | Federated XGBoost Engine", version="4.0.0")
+app = FastAPI(title="UPI Pay Shield | 10-Feature Federated AI", version="3.0.0")
 
 os.makedirs("templates", exist_ok=True)
 templates = Jinja2Templates(directory="templates")
 
-# Load Leakage-Free Preprocessing Artifacts & Global Federated XGBoost Model
-scaler = joblib.load("models/standard_scaler.pkl")
-ohe = joblib.load("models/onehot_encoder.pkl")
-selector = joblib.load("models/feature_selector.pkl")
+# Load Existing Models from GitHub models/ folder
+scaler = joblib.load("models/robust_scaler.pkl")
+feature_columns = joblib.load("models/feature_columns.pkl")
 
-bst_model = xgb.Booster()
-bst_model.load_model("models/global_xgb_model.json")
+model = xgb.Booster()
+model.load_model("models/global_xgb_model.json")
 
 USER_WALLET_BALANCE = 50000.0
 KNOWN_RECEIVERS = {
@@ -33,7 +31,7 @@ REPORTED_VPAS = {
     "refund.helpdesk@axl": 9,
 }
 
-class UPIRequest(BaseModel):
+class FuturisticUPIRequest(BaseModel):
     receiver_upi: str
     amount: float
     payment_mode: str
@@ -44,7 +42,7 @@ class UPIRequest(BaseModel):
     midnight_mode: bool
     typing_hesitation: float
 
-def score_upi_transaction(req: UPIRequest):
+def run_10_feature_shield(req: FuturisticUPIRequest):
     upi_clean = req.receiver_upi.lower().strip()
     current_hour = 2 if req.midnight_mode else (datetime.now().hour + 1)
     old_bal_org = USER_WALLET_BALANCE
@@ -60,38 +58,24 @@ def score_upi_transaction(req: UPIRequest):
 
     tx_type = "PAYMENT" if req.payment_mode == "MERCHANT_QR" else "TRANSFER"
 
-    # 1. Exact Same Preprocessing Pipeline as Training Notebook
-    raw_df = pd.DataFrame([{
+    raw_dict = {
         "step": current_hour,
-        "type": tx_type,
         "amount": req.amount,
         "oldbalanceOrg": old_bal_org,
         "newbalanceOrig": new_bal_org,
         "oldbalanceDest": old_bal_dest,
-        "newbalanceDest": new_bal_dest
-    }])
+        "newbalanceDest": new_bal_dest,
+        f"type_{tx_type}": 1
+    }
+    input_df = pd.DataFrame([raw_dict])
+    for col in feature_columns:
+        if col not in input_df.columns:
+            input_df[col] = 0
+    input_df = input_df[feature_columns]
 
-    raw_df["errorBalanceOrig"] = raw_df["oldbalanceOrg"] - raw_df["amount"] - raw_df["newbalanceOrig"]
-    raw_df["errorBalanceDest"] = raw_df["oldbalanceDest"] + raw_df["amount"] - raw_df["newbalanceDest"]
+    scaled_features = scaler.transform(input_df)
+    base_xgb_prob = float(model.predict(xgb.DMatrix(scaled_features))[0])
 
-    encoded_type = pd.DataFrame(
-        ohe.transform(raw_df[["type"]]),
-        columns=ohe.get_feature_names_out(["type"]),
-        index=raw_df.index
-    )
-    proc_df = pd.concat([raw_df.drop(columns=["type"]), encoded_type], axis=1)
-
-    log_cols = ["amount", "oldbalanceOrg", "newbalanceOrig", "oldbalanceDest", "newbalanceDest"]
-    for col in log_cols:
-        proc_df[col] = np.log1p(proc_df[col])
-
-    scale_cols = ["step", "amount", "oldbalanceOrg", "newbalanceOrig", "oldbalanceDest", "newbalanceDest", "errorBalanceOrig", "errorBalanceDest"]
-    proc_df[scale_cols] = scaler.transform(proc_df[scale_cols])
-
-    selected_input = selector.transform(proc_df)
-    base_xgb_prob = float(bst_model.predict(xgb.DMatrix(selected_input))[0])
-
-    # 2. Risk Attribution & Real-Time Defense Layers
     shap_factors = []
     xgb_contrib = round(base_xgb_prob * 45.0, 1)
     if xgb_contrib > 2.0:
@@ -177,8 +161,8 @@ async def home(request: Request):
     return templates.TemplateResponse(request=request, name="index.html")
 
 @app.post("/api/check_upi")
-async def check_upi(req: UPIRequest):
+async def check_upi(req: FuturisticUPIRequest):
     try:
-        return JSONResponse(content=score_upi_transaction(req))
+        return JSONResponse(content=run_10_feature_shield(req))
     except Exception as e:
         return JSONResponse(status_code=400, content={"error": str(e)})
